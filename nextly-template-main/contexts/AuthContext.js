@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
 
   const verifyToken = async (token) => {
     try {
-      const res = await fetch('http://localhost:3001/api/verify', {
+      const res = await fetch('/api/verify', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -37,7 +37,7 @@ export function AuthProvider({ children }) {
 
   const login = async (username, password) => {
     try {
-      const res = await fetch('http://localhost:3001/api/login', {
+      const res = await fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
