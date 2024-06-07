@@ -5,7 +5,7 @@
 ### 1\. Clone this Repository
 
 ```bash
-git clone https://github.com/surjithctly/nextly-template.git](https://github.com/DavidCarlosama/Project_Yachay_museum/
+git clone https://github.com/DavidCarlosama/Project_Yachay_museum/
 ```
 
 ### 2\. Navigate to the directory
