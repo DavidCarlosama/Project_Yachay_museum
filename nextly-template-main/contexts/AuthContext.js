@@ -1,66 +1,40 @@
 // contexts/AuthContext.js
-import { createContext, useContext, useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      verifyToken(token);
+    // Check if user is stored in localStorage
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
     }
   }, []);
 
-  const verifyToken = async (token) => {
-    try {
-      const res = await fetch('/api/verify', {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      const data = await res.json();
-      if (data.valid) {
-        setUser(data.user);
-      } else {
-        localStorage.removeItem('token');
-        router.replace('/login');
-      }
-    } catch (error) {
-      console.error('Token verification failed:', error);
-      localStorage.removeItem('token');
-      router.replace('/login');
-    }
-  };
+  const login = async (email, password) => {
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
 
-  const login = async (username, password) => {
-    try {
-      const res = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-      });
-
-      if (res.ok) {
-        const { token } = await res.json();
-        localStorage.setItem('token', token);
-        await verifyToken(token);
-        router.push('/admin');
-      } else {
-        const { message } = await res.json();
-        throw new Error(message);
-      }
-    } catch (error) {
-      return { error: error.message };
+    if (res.ok) {
+      const user = await res.json();
+      setUser(user);
+      localStorage.setItem('user', JSON.stringify(user));
+      return user;
+    } else {
+      const error = await res.json();
+      throw new Error(error.message);
     }
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
     setUser(null);
-    router.push('/login');
+    localStorage.removeItem('user');
   };
 
   return (
@@ -68,6 +42,6 @@ export function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
 export const useAuth = () => useContext(AuthContext);

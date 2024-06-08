@@ -4,4 +4,5 @@ module.exports = {
     defaultLocale: "en",
   },
   output: "standalone",
+  productionBrowserSourceMaps: true,
 };

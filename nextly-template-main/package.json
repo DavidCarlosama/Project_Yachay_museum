@@ -27,15 +27,21 @@
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.17",
     "@tailwindcss/aspect-ratio": "^0.4.2",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.7.0",
+    "mongoose": "^8.4.1",
     "next": "^13.3.1",
     "next-themes": "^0.2.1",
+    "node-fetch": "^3.3.2",
     "react": "^18",
     "react-calendar": "^5.0.0",
     "react-dom": "^18",
     "react-hook-form": "^7.43.9",
     "react-transition-group": "^4.4.5",
-    "swiper": "^11.1.1",
-    "express": "^4.17.1"
+    "swiper": "^11.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
