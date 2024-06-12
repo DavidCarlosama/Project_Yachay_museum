@@ -1,24 +1,26 @@
-// pages/catalogo.js
 import { useState } from 'react';
 import Head from "next/head";
 import Navbar from "../components/navbar";
 import PopupWidget from "../components/popupWidget";
 import Link from 'next/link';
-import Image from 'next/image'
+import Image from 'next/image';
 import articles from '../data/articles.json';
-
-
-
 
 const ITEMS_PER_PAGE = 6;
 
 const Catalogo = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [darkMode, setDarkMode] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  
+  const filteredArticles = articles.filter(article => {
+    return article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+           article.description.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
-  const totalPages = Math.ceil(articles.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(filteredArticles.length / ITEMS_PER_PAGE);
 
-  const currentArticles = articles.slice(
+  const currentArticles = filteredArticles.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
@@ -31,16 +33,35 @@ const Catalogo = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 1));
   };
 
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+    setCurrentPage(1); // Resetear la página actual cuando se cambia el término de búsqueda
+  };
+
   return (
     <>
       <Head>
-        {/* Encabezado omitido por brevedad */}
+        <title>Yachay Archaeological Museum</title>
+        
       </Head>
 
       <Navbar />
       
-      <main className={`container mx-auto p-8 ${darkMode ? 'dark' : ''}`}>
-        {/* Contenido omitido por brevedad */}
+      <main className={`container mx-auto p-9 ${darkMode ? 'dark' : ''}`}>
+          {/* Texto "Artículos disponibles" */}
+        <div className="mb-5 text-center">
+          <p className="text-lg font-bold">Articles on exhibitions</p>
+        </div>
+           {/* Barra de búsqueda */}
+        <div className="mb-4 relative">
+          <input
+            type="text"
+            placeholder="Buscar..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="px-4 py-2 w-full border rounded"
+          />
+        </div>
 
         <div className="flex flex-wrap justify-center">
           {currentArticles.map(article => (
@@ -95,7 +116,6 @@ const Catalogo = () => {
           </button>
         </div>
       </main>
-      
       
       <PopupWidget />
     </>
