@@ -52,7 +52,7 @@ const Hero = () => {
       <Container>
         <div className="flex flex-col justify-center">
           <div className="text-xl text-center text-gray-700 dark:text-white">
-            More than <span className="text-indigo-600">58060</span>{" "}
+            More than 58060
             archaeological assets
           </div>
 
