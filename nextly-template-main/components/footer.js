@@ -4,14 +4,16 @@ import React from "react";
 import Container from "./container";
 
 export default function Footer() {
-  const navigation = [
-    
-    "Features",
-    "Pricing",
-    "Company",
-    "Blog",
-  ];
-  const legal = ["Terms", "Privacy", "Legal"];
+  const clientInfo = {
+    name: "Yachay Tech Museum",
+    description: "The Yachay Museum preserves and shares regional heritage through exhibits, programs, and community engagement, fostering cultural appreciation and creativity while promoting local pride and identity..",
+    contactEmail: "info@yachaymuseum.com",
+    phoneNumber: "+1234567890",
+    address: "123 Main Street, City, Country"
+  };
+
+  const legal = [];
+
   return (
     <div className="relative">
       <Container>
@@ -19,23 +21,20 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div>
               {" "}
-              <Link href="/" className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
-                    <Image
-                      src="/img/logo.svg"
-                      alt="N"
-                      width="32"
-                      height="32"
-                      className="w-8"
-                    />
-                  <span>Yachay Museum</span>
+              <Link href="/" className="flex items-center space-x-2 text-2xl font-medium text-black-500 dark:text-gray-100">
+                <Image
+                  src="/img/logo_foter.svg"
+                  alt="N"
+                  width="32"
+                  height="32"
+                  className="w-10"
+                />
+                <span>{clientInfo.name}</span>
               </Link>
             </div>
 
-            <div className="max-w-md mt-4 text-gray-500 dark:text-gray-400">
-            The Yachay Museum is a captivating space where history merges with science and culture. 
-            Located in an environment enriched by the natural beauty of its location,
-            this museum offers a unique experience that invites visitors to immerse 
-            themselves in the fascinating world of knowledge.
+            <div className="max-w-md mt-4 text-black-500 dark:text-black-400 text-justify">
+              {clientInfo.description}
             </div>
 
             <div className="mt-5">
@@ -54,55 +53,49 @@ export default function Footer() {
             </div>
           </div>
 
-          <div>
-            <div className="flex flex-wrap w-full -mt-2 -ml-3 lg:ml-0">
-              {navigation.map((item, index) => (
-                <Link key={index} href="/" className="w-full px-4 py-2 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-trueGray-700">                 
-                    {item}
-                </Link>
-              ))}
+          <div className="lg:col-span-1 flex justify-end"> {/* Alineación a la derecha */}
+            <div>
+              <div>Contact Information</div>
+              <div className="mt-5">
+                <p>Email: {clientInfo.contactEmail}</p>
+                <p>Phone: {clientInfo.phoneNumber}</p>
+                <p>Address: {clientInfo.address}</p>
+              </div>
             </div>
           </div>
-          <div>
-            <div className="flex flex-wrap w-full -mt-2 -ml-3 lg:ml-0">
-              {legal.map((item, index) => (
-                <Link key={index} href="/" className="w-full px-4 py-2 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-trueGray-700">      
-                    {item}
-                </Link>
-              ))}
-            </div>
-          </div>
-          <div className="">
-            <div>Follow us</div>
-            <div className="flex mt-5 space-x-5 text-gray-400 dark:text-gray-500">
-              <a
-                href="https://twitter.com/UniYachayTech/status/1659196580317233152"
-                target="_blank"
-                rel="noopener">
-                <span className="sr-only">Twitter</span>
-                <Twitter />
-              </a>
-              <a
-                href="https://www.yachaytech.edu.ec/museo-arqueologico/"
-                target="_blank"
-                rel="noopener">
-                <span className="sr-only">Facebook</span>
-                <Facebook />
-              </a>
-              <a
-                href="https://www.instagram.com/museoyachay/"
-                target="_blank"
-                rel="noopener">
-                <span className="sr-only">Instagram</span>
-                <Instagram />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/uni-yachay-tech/?originalSubdomain=ec"
-                target="_blank"
-                rel="noopener">
-                <span className="sr-only">Linkedin</span>
-                <Linkedin />
-              </a>
+          <div className="lg:col-span-2 flex justify-end"> {/* Alineación a la derecha */}
+            <div>
+              <div>Follow us</div>
+              <div className="flex mt-5 space-x-5 text-gray-400 dark:text-gray-500">
+                <a
+                  href="https://twitter.com/UniYachayTech/status/1659196580317233152"
+                  target="_blank"
+                  rel="noopener">
+                  <span className="sr-only">Twitter</span>
+                  <Twitter />
+                </a>
+                <a
+                  href="https://www.yachaytech.edu.ec/museo-arqueologico/"
+                  target="_blank"
+                  rel="noopener">
+                  <span className="sr-only">Facebook</span>
+                  <Facebook />
+                </a>
+                <a
+                  href="https://www.instagram.com/museoyachay/"
+                  target="_blank"
+                  rel="noopener">
+                  <span className="sr-only">Instagram</span>
+                  <Instagram />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/uni-yachay-tech/?originalSubdomain=ec"
+                  target="_blank"
+                  rel="noopener">
+                  <span className="sr-only">Linkedin</span>
+                  <Linkedin />
+                </a>
+              </div>
             </div>
           </div>
         </div>
